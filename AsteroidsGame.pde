@@ -1,4 +1,5 @@
 //your variable declarations here
+Spaceship lucky = new Spaceship();
 public void setup() 
 {
   //your code here
@@ -6,12 +7,21 @@ public void setup()
 public void draw() 
 {
   //your code here
+  lucky.show();
 }
 class Spaceship extends Floater  
 {   
     //your code here
     public void setX(int x){myCenterX = x;}
     public int getX(){return (int)myCenterX;}
+    public void setY(int y){myCenterY = y;}
+    public int getY(){return(int)myCenterY;}
+    public void setDirectionX(double x);
+    public double getDirectionX();
+    public void setDirectionY(double y);
+    public double getDirectionY();
+    public void setPointDirection(int degrees);
+    public double getPointDirection();
     public Spaceship()
     {
       corners = 4;
