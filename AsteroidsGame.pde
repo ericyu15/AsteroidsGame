@@ -3,12 +3,27 @@ Spaceship lucky = new Spaceship();
 public void setup() 
 {
   //your code here
-  size(300,300);
+  size(600,600);
+  lucky.setX(300);
+  lucky.setY(300);
 }
 public void draw() 
 {
   //your code here
+  background(250);
   lucky.show();
+  lucky.move();
+}
+public void keyPressed()
+{
+  if(keyCode == 38)
+    lucky.accelerate(0.5);
+  if(keyCode == 40)
+    lucky.accelerate(-0.5);
+  if(keyCode == 37)
+    lucky.rotate(-15);
+  if(keyCode == 39)
+    lucky.rotate(15);
 }
 class Spaceship extends Floater  
 {   
