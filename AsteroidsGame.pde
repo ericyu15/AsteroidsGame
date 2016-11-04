@@ -1,16 +1,23 @@
 //your variable declarations here
 Spaceship lucky = new Spaceship();
+Star little[] = new Star[100];
 public void setup() 
 {
   //your code here
   size(600,600);
   lucky.setX(300);
   lucky.setY(300);
+  for(int i = 0;i < little.length; i++)
+  {
+    little[i] = new Star();
+  }
 }
 public void draw() 
 {
   //your code here
   background(250);
+  for(int i =0;i < little.length; i++)
+    little[i].show();
   lucky.show();
   lucky.move();
 }
@@ -21,17 +28,23 @@ public void keyPressed()
   if(keyCode == 40)
     lucky.accelerate(-0.5);
   if(keyCode == 37)
-    lucky.rotate(-15);
+    lucky.rotate(-20);
   if(keyCode == 39)
-    lucky.rotate(15);
+    lucky.rotate(20);
+  //if(keyCode == 49)
+  {
+    lucky.setX((int)(Math.random()*601));
+    lucky.setY((int)(Math.random()*601));
+  }
 }
 class Spaceship extends Floater  
 {   
     //your code here
+    private int myColor;
     public void setX(int x){myCenterX = x;}
     public int getX(){return (int)myCenterX;}
     public void setY(int y){myCenterY = y;}
-    public int getY(){return(int)myCenterY;}
+    public int getY(){return (int)myCenterY;}
     public void setDirectionX(double x){myDirectionX = x;}
     public double getDirectionX(){return myDirectionX;}
     public void setDirectionY(double y){myDirectionY = y;}
@@ -40,6 +53,7 @@ class Spaceship extends Floater
     public double getPointDirection(){return myPointDirection;}
     public Spaceship()
     {
+      myColor = 250;
       corners = 4;
       xCorners = new int[corners];
       yCorners = new int[corners];
@@ -51,6 +65,19 @@ class Spaceship extends Floater
       yCorners[2] = 8;
       xCorners[3] = -2;
       yCorners[3] = 0;
+    }
+}
+class Star
+{
+    private int myX, myY;
+    public Star()
+    {
+      myX = (int)(Math.random()*601);
+      myY = (int)(Math.random()*601);
+    } 
+    public void show()
+    {
+      ellipse(myX,myY,3,3);
     }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
