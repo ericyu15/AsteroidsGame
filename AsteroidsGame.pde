@@ -7,6 +7,7 @@ public void setup()
   size(600,600);
   lucky.setX(300);
   lucky.setY(300);
+  lucky.setmyColor(250);
   for(int i = 0;i < little.length; i++)
   {
     little[i] = new Star();
@@ -15,7 +16,7 @@ public void setup()
 public void draw() 
 {
   //your code here
-  background(250);
+  background(0);
   for(int i =0;i < little.length; i++)
     little[i].show();
   lucky.show();
@@ -24,23 +25,25 @@ public void draw()
 public void keyPressed()
 {
   if(keyCode == 38)
-    lucky.accelerate(0.5);
+    lucky.accelerate(0.3);
   if(keyCode == 40)
-    lucky.accelerate(-0.5);
+    lucky.accelerate(-0.4);
   if(keyCode == 37)
     lucky.rotate(-20);
   if(keyCode == 39)
     lucky.rotate(20);
-  //if(keyCode == 49)
+  if(keyCode == 90)
   {
+    lucky.setDirectionX(0);
+    lucky.setDirectionY(0);
     lucky.setX((int)(Math.random()*601));
     lucky.setY((int)(Math.random()*601));
+    lucky.setPointDirection((int)(Math.random()*360));
   }
 }
 class Spaceship extends Floater  
 {   
     //your code here
-    private int myColor;
     public void setX(int x){myCenterX = x;}
     public int getX(){return (int)myCenterX;}
     public void setY(int y){myCenterY = y;}
@@ -51,9 +54,10 @@ class Spaceship extends Floater
     public double getDirectionY(){return myDirectionY;}
     public void setPointDirection(int degrees){myPointDirection = degrees;}
     public double getPointDirection(){return myPointDirection;}
+    public void setmyColor(int c){myColor = c;}
+    public int getmyColor(){return (int)myColor;}
     public Spaceship()
     {
-      myColor = 250;
       corners = 4;
       xCorners = new int[corners];
       yCorners = new int[corners];
@@ -69,14 +73,17 @@ class Spaceship extends Floater
 }
 class Star
 {
-    private int myX, myY;
+    private int myX, myY, myColor;
     public Star()
     {
+      myColor = 250;
       myX = (int)(Math.random()*601);
       myY = (int)(Math.random()*601);
     } 
     public void show()
     {
+      noStroke();
+      fill(myColor);
       ellipse(myX,myY,3,3);
     }
 }
