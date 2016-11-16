@@ -1,6 +1,7 @@
 //your variable declarations here
 Spaceship lucky = new Spaceship();
 Star little[] = new Star[100];
+Asteroid rock[] = new Asteroid[25];
 public void setup() 
 {
   //your code here
@@ -12,13 +13,19 @@ public void setup()
   {
     little[i] = new Star();
   }
+  for(int n = 0; n < rock.length; n++)
+  {
+    rock[n] = new Asteroid();
+  }
 }
 public void draw() 
 {
   //your code here
   background(0);
-  for(int i =0;i < little.length; i++)
+  for(int i = 0;i < little.length; i++)
     little[i].show();
+  for(int n = 0; n < rock.length; n++)
+    rock[n].show();
   lucky.show();
   lucky.move();
 }
@@ -73,7 +80,18 @@ class Spaceship extends Floater
 }
 class Asteroid extends Floater
 {
-  private int speedOfRotation;
+  public Asteroid()
+  {
+    //speedOfRotation = 
+    myX = (int)(Math.random()*601);
+    myY = (int)(Math.random()*601);
+  }
+  public void show()
+  {
+    fill(160,82,45);
+    ellipse(myX,myY,20,20);
+  }
+  private int speedOfRotation, myX, myY;
   public void setX(int x){myCenterX = x;}  
   public int getX(){return (int)myCenterX;}
   public void setY(int y){myCenterY = y;}
@@ -84,7 +102,7 @@ class Asteroid extends Floater
   public double getDirectionY(){return myDirectionY;}  
   public void setPointDirection(int degrees){myPointDirection = degrees;}
   public double getPointDirection(){return myPointDirection;}
-  public void move();
+  public void move()
 }
 class Star
 {
