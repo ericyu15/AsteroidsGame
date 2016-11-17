@@ -1,6 +1,6 @@
 //your variable declarations here
 Spaceship lucky = new Spaceship();
-Star little[] = new Star[100];
+Star little[] = new Star[150];
 Asteroid rock[] = new Asteroid[25];
 public void setup() 
 {
@@ -103,6 +103,10 @@ class Asteroid extends Floater
   public void setPointDirection(int degrees){myPointDirection = degrees;}
   public double getPointDirection(){return myPointDirection;}
   public void move()
+  {
+    myCenterX += myDirectionX;
+    myCenterY += myDirectionY;
+  }
 }
 class Star
 {
