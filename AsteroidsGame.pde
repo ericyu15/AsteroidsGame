@@ -104,6 +104,8 @@ class Asteroid extends Floater
   public double getPointDirection(){return myPointDirection;}
   public void move()
   {
+
+    
     myCenterX += myDirectionX;
     myCenterY += myDirectionY;
   }
