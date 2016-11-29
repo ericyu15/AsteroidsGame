@@ -25,7 +25,10 @@ public void draw()
   for(int i = 0;i < little.length; i++)
     little[i].show();
   for(int n = 0; n < rock.length; n++)
+  {
     rock[n].show();
+    rock[n].move();
+  }
   lucky.show();
   lucky.move();
 }
@@ -104,10 +107,24 @@ class Asteroid extends Floater
   public double getPointDirection(){return myPointDirection;}
   public void move()
   {
-
-    
-    myCenterX += myDirectionX;
-    myCenterY += myDirectionY;
+    myX = myX + (int)(Math.random()*8 - 4);
+    myY = myY + (int)(Math.random()*8 - 4);
+    if(myCenterX >width)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX<0)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY >height)
+    {    
+      myCenterY = 0;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    } 
   }
 }
 class Star
