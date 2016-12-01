@@ -27,7 +27,7 @@ public void draw()
   for(int n = 0; n < rock.length; n++)
   {
     rock[n].show();
-    rock[n].move();
+    rock[n].rotate();
   }
   lucky.show();
   lucky.move();
@@ -92,7 +92,7 @@ class Asteroid extends Floater
   public void show()
   {
     fill(160,82,45);
-    ellipse(myX,myY,20,20);
+    rect(myX,myY,20,20);
   }
   private int speedOfRotation, myX, myY;
   public void setX(int x){myCenterX = x;}  
@@ -105,27 +105,8 @@ class Asteroid extends Floater
   public double getDirectionY(){return myDirectionY;}  
   public void setPointDirection(int degrees){myPointDirection = degrees;}
   public double getPointDirection(){return myPointDirection;}
-  public void move()
-  {
-    myX = myX + (int)(Math.random()*8 - 4);
-    myY = myY + (int)(Math.random()*8 - 4);
-    if(myCenterX >width)
-    {     
-      myCenterX = 0;    
-    }    
-    else if (myCenterX<0)
-    {     
-      myCenterX = width;    
-    }    
-    if(myCenterY >height)
-    {    
-      myCenterY = 0;    
-    }   
-    else if (myCenterY < 0)
-    {     
-      myCenterY = height;    
-    } 
-  }
+  public void rotate()
+
 }
 class Star
 {
