@@ -9,6 +9,8 @@ public void setup()
   lucky.setX(300);
   lucky.setY(300);
   lucky.setmyColor(250);
+  rock.setX(Math.random()*601);
+  rock.setY(Math.random()*601);
   for(int i = 0;i < little.length; i++)
   {
     little[i] = new Star();
@@ -27,7 +29,6 @@ public void draw()
   for(int n = 0; n < rock.length; n++)
   {
     rock[n].show();
-    rock[n].rotate();
   }
   lucky.show();
   lucky.move();
@@ -45,8 +46,8 @@ public void keyPressed()
   if(keyCode == 90)
   {
     lucky.setDirectionX(0);
-    lucky.setDirectionY(0);
     lucky.setX((int)(Math.random()*601));
+    lucky.setDirectionY(0);
     lucky.setY((int)(Math.random()*601));
     lucky.setPointDirection((int)(Math.random()*360));
   }
@@ -85,9 +86,8 @@ class Asteroid extends Floater
 {
   public Asteroid()
   {
-    //speedOfRotation = 
-    myX = (int)(Math.random()*601);
-    myY = (int)(Math.random()*601);
+    myX = myCenterX;
+    myY = myCenterY;
   }
   public void show()
   {
@@ -105,7 +105,6 @@ class Asteroid extends Floater
   public double getDirectionY(){return myDirectionY;}  
   public void setPointDirection(int degrees){myPointDirection = degrees;}
   public double getPointDirection(){return myPointDirection;}
-  public void rotate()
 
 }
 class Star
