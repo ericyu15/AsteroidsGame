@@ -9,8 +9,6 @@ public void setup()
   lucky.setX(300);
   lucky.setY(300);
   lucky.setmyColor(250);
-  rock.setX(Math.random()*601);
-  rock.setY(Math.random()*601);
   for(int i = 0;i < little.length; i++)
   {
     little[i] = new Star();
@@ -80,14 +78,15 @@ class Spaceship extends Floater
       yCorners[2] = 8;
       xCorners[3] = -2;
       yCorners[3] = 0;
+      setmyColor(250);
     }
 }
 class Asteroid extends Floater
 {
   public Asteroid()
   {
-    myX = myCenterX;
-    myY = myCenterY;
+    myX = (int)(Math.random()*601);
+    myY = (int)(Math.random()*601);
   }
   public void show()
   {
