@@ -87,13 +87,14 @@ class Asteroid extends Floater
   {
     myX = (int)(Math.random()*601);
     myY = (int)(Math.random()*601);
+    rotSpeed = (int)(Math.random()*3)-1;
   }
   public void show()
   {
     fill(160,82,45);
     rect(myX,myY,20,20);
   }
-  private int speedOfRotation, myX, myY;
+  private int rotSpeed, myX, myY;
   public void setX(int x){myCenterX = x;}  
   public int getX(){return (int)myCenterX;}
   public void setY(int y){myCenterY = y;}
@@ -104,7 +105,11 @@ class Asteroid extends Floater
   public double getDirectionY(){return myDirectionY;}  
   public void setPointDirection(int degrees){myPointDirection = degrees;}
   public double getPointDirection(){return myPointDirection;}
-
+  public void move()
+  {
+    rotate(rotSpeed);
+    super.move();
+  }
 }
 class Star
 {
