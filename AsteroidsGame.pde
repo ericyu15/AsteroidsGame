@@ -1,7 +1,7 @@
 //your variable declarations here
 Spaceship lucky = new Spaceship();
 Star little[] = new Star[150];
-Asteroid rock[] = new Asteroid[25];
+ArrayList <Asteroid> rock = new ArrayList <Asteroid>();
 public void setup() 
 {
   //your code here
@@ -13,9 +13,9 @@ public void setup()
   {
     little[i] = new Star();
   }
-  for(int n = 0; n < rock.length; n++)
+  for(int n = 0; n < 25; n++)
   {
-    rock[n] = new Asteroid();
+    rock.add(new Asteroid());
   }
 }
 public void draw() 
@@ -24,9 +24,12 @@ public void draw()
   background(0);
   for(int i = 0;i < little.length; i++)
     little[i].show();
-  for(int n = 0; n < rock.length; n++)
+  for(int n = 0; n < rock.size(); n++)
   {
-    rock[n].show();
+    rock.get(n).show();
+    rock.get(n).move();
+    if(dist(lucky.getX(), lucky.getY(), rock.get(n).getX(), rock.get(n).getY()) < 20)
+      rock.remove(n);
   }
   lucky.show();
   lucky.move();
@@ -85,16 +88,29 @@ class Asteroid extends Floater
 {
   public Asteroid()
   {
-    myX = (int)(Math.random()*601);
-    myY = (int)(Math.random()*601);
+    myCenterX = (int)(Math.random()*601);
+    myCenterY = (int)(Math.random()*601);
     rotSpeed = (int)(Math.random()*3)-1;
+    myDirectionX = (Math.random()*11)-5;
+    myDirectionY = (Math.random()*11)-5;
+    corners = 6;
+      xCorners = new int[corners];
+      yCorners = new int[corners];
+      xCorners[0] = 12;
+      yCorners[0] = 0;
+      xCorners[1] = 6;
+      yCorners[1] = -12;
+      xCorners[2] = -6;
+      yCorners[2] = -12;
+      xCorners[3] = -12;
+      yCorners[3] = 0;
+      xCorners[4] = -6;
+      yCorners[4] = 12;
+      xCorners[5] = 6;
+      yCorners[5] = 12;
+      myColor = color(250);
   }
-  public void show()
-  {
-    fill(160,82,45);
-    rect(myX,myY,20,20);
-  }
-  private int rotSpeed, myX, myY;
+  private int rotSpeed;
   public void setX(int x){myCenterX = x;}  
   public int getX(){return (int)myCenterX;}
   public void setY(int y){myCenterY = y;}
@@ -203,4 +219,5 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
+
 
