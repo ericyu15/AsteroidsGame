@@ -91,8 +91,8 @@ class Asteroid extends Floater
     myCenterX = (int)(Math.random()*601);
     myCenterY = (int)(Math.random()*601);
     rotSpeed = (int)(Math.random()*3)-1;
-    myDirectionX = (Math.random()*11)-5;
-    myDirectionY = (Math.random()*11)-5;
+    myDirectionX = (Math.random()*6)-3;
+    myDirectionY = (Math.random()*6)-3;
     corners = 6;
       xCorners = new int[corners];
       yCorners = new int[corners];
