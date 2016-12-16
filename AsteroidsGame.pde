@@ -2,6 +2,7 @@
 Spaceship lucky = new Spaceship();
 Star little[] = new Star[150];
 ArrayList <Asteroid> rock = new ArrayList <Asteroid>();
+ArrayList <Bullet> bang = new ArrayList <Bullet>();
 public void setup() 
 {
   //your code here
@@ -31,6 +32,16 @@ public void draw()
     if(dist(lucky.getX(), lucky.getY(), rock.get(n).getX(), rock.get(n).getY()) < 20)
       rock.remove(n);
   }
+  for (int i = 0; i < bang.size(); i++)
+  {
+    bang.get(i).move();
+    bang.get(i).show();
+    if (bang.get(i).getX() > 600 || bang.get(i).getX() < 0 || bang.get(i).getY() < 0 || bang.get(i).getY() > 600) 
+    {
+      bang.remove(i);
+      i--;
+    }
+  }
   lucky.show();
   lucky.move();
 }
@@ -52,6 +63,8 @@ public void keyPressed()
     lucky.setY((int)(Math.random()*601));
     lucky.setPointDirection((int)(Math.random()*360));
   }
+  if(keyCode == 88)
+  lucky.shoot();
 }
 class Spaceship extends Floater  
 {   
@@ -83,6 +96,50 @@ class Spaceship extends Floater
       yCorners[3] = 0;
       setmyColor(250);
     }
+    public void shoot()
+    {
+      bang.add(new Bullet(lucky.getX(), lucky.getY(), lucky.getPointDirection(), lucky.getDirectionX(), lucky.getDirectionY()));
+    }
+}
+class Bullet extends Floater
+{
+  public Bullet(int x, int y, double pointDirection, double directionX, double directionY)
+  {
+    corners = 4;
+    xCorners = new int[4];
+    yCorners = new int[4];
+    xCorners[0] = 2;
+    yCorners[0] = 0;
+    xCorners[1] = 0;
+    yCorners[1] = 2;
+    xCorners[2] = -2;
+    yCorners[2] = 0;
+    xCorners[3] = 0;
+    yCorners[3] = -2;
+    myColor = color(255);
+    myCenterX = x;
+    myCenterY = y;
+    myPointDirection = pointDirection;
+    myDirectionX = directionX;
+    myDirectionY = directionY;
+    accelerate(5);
+  }
+  public void setX(int x) {myCenterX = x;}
+  public int getX() {return (int)myCenterX;}
+  public void setY(int y) {myCenterY = y;}
+  public int getY() {return (int)myCenterY;}
+  public void setDirectionX(double x) {myDirectionX = x;}   
+  public double getDirectionX() {return myDirectionX;}
+  public void setDirectionY(double y) {myDirectionY = y;}
+  public double getDirectionY() {return myDirectionY;}
+  public void setPointDirection(int degrees) {myPointDirection = degrees;}
+  public double getPointDirection() {return myPointDirection;}
+  public void move ()   //move the floater in the current direction of travel
+  {      
+    //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY; 
+  }
 }
 class Asteroid extends Floater
 {
